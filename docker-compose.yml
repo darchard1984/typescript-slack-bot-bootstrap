@@ -1,0 +1,41 @@
+version: '3'
+services:
+  develop:
+    container_name: bot_server_app
+    image: bot/develop
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    volumes:
+      - .:/code
+    depends_on:
+      - dev_db
+    links:
+      - dev_db
+    command:
+      ['npm', 'run', 'start-dev']
+  install:
+    container_name: bot_install
+    image: bot/install
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/code
+    command:
+      ['npm', 'install']
+  dev_db:
+    image: postgres:alpine
+    restart: always
+    ports: 
+      - '5432:5432'
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pg_data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DEV_DB}
+      POSTGRES_USER: ${POSTGRES_DEV_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_DEV_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_DEV_HOST}
+      PGDATA: /var/lib/postgresql/data/pg_data

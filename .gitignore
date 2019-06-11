@@ -1,0 +1,8 @@
+.env
+db_dev.env
+pg_data
+node_modules
+dist/*.js
+dist
+ormconfig.yml
+ormconfig.json
