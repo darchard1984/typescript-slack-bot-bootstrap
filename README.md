@@ -1,2 +1,2 @@
 # typescript-slackbot-bootstrap
-A Typescript, TypeORM, PostGres, SlackBot Bootstrap starter repo
+A Typescript, Express, TypeORM, PostGres, SlackBot server starter app
