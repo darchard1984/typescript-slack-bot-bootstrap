@@ -4,7 +4,6 @@ WORKDIR /code
 
 EXPOSE 8080
 
-RUN npm install -g typescript
-RUN npm install typeorm -g
+RUN npm install -g typescript && npm install typeorm -g
 
 COPY . .
